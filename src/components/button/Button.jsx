@@ -23,6 +23,7 @@ class Button extends React.Component {
   render() {
     let {
       className,
+      children,
       theme,
       size,
       squared,
@@ -39,19 +40,14 @@ class Button extends React.Component {
       theme && `btn-${theme}`,
       size && `btn-${size}`,
       squared && "btn-squared",
-      block && "btn-block",
-      active && "active"
+      block && "btn-block"
+      // active && "active"
     );
 
     return (
-      <Tag
-        ref={innerRef}
-        type={tagType}
-        {...attrs}
-        className={classes}
-        disabled={disabled}
-        onClick={this.onClick}
-      />
+      <button ref={innerRef} className={classes} onClick={this.onClick}>
+        {children}
+      </button>
     );
   }
 }
@@ -65,7 +61,7 @@ Button.propTypes = {
   active: PropTypes.bool,
   block: PropTypes.bool,
   disabled: PropTypes.bool,
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  onClick: PropTypes.func.isRequired,
   innerRef: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.func,
@@ -75,6 +71,8 @@ Button.propTypes = {
 
 Button.defaultProps = {
   theme: "primary",
+  type: "accept",
+  size: "normal",
 };
 
 export default Button;
