@@ -29,7 +29,6 @@ class Button extends React.Component {
       squared,
       active,
       disabled,
-      innerRef,
       block,
       ...attrs
     } = this.props;
@@ -40,12 +39,17 @@ class Button extends React.Component {
       theme && `btn-${theme}`,
       size && `btn-${size}`,
       squared && "btn-squared",
-      block && "btn-block"
-      // active && "active"
+      block && "btn-block",
+      active && "active"
     );
 
     return (
-      <button ref={innerRef} className={classes} onClick={this.onClick}>
+      <button
+        className={classes}
+        disabled={disabled}
+        onClick={this.onClick}
+        {...attrs}
+      >
         {children}
       </button>
     );
@@ -62,11 +66,6 @@ Button.propTypes = {
   block: PropTypes.bool,
   disabled: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
-  innerRef: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.func,
-    PropTypes.string,
-  ]),
 };
 
 Button.defaultProps = {

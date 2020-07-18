@@ -17,47 +17,26 @@
     width: 100%;
   }
 
-  &-primary {
-    background-color: $primary;
-    color: $foreground;
+  @each $theme, $color in $themes {
+    &-#{$theme} {
+      background-color: $color;
+      color: $foreground;
+
+      &.active:not(:disabled) {
+        background-color: saturate($color, 20);
+      }
+
+      &:disabled {
+        background-color: desaturate($color, 17);
+      }
+    }
   }
 
-  &-positive {
-    background-color: $positive;
-    color: $foreground;
-  }
-
-  &-negative {
-    background-color: $negative;
-    color: $foreground;
-  }
-
-  &-warning {
-    background-color: $warning;
-    color: $foreground;
-  }
-
-  // @each $size in $sizes {
-  //   .btn-#{size} {
-  //     padding: $paddings[size];
-  //   }
-  // }
-
-  &-small {
-    padding: $padding-small;
-    font-size: $element-text-small;
-    border-radius: $border-radius-small;
-  }
-
-  &-normal {
-    padding: $padding-normal;
-    font-size: $element-text-normal;
-    border-radius: $border-radius-normal;
-  }
-
-  &-big {
-    padding: $padding-big;
-    font-size: $element-text-big;
-    border-radius: $border-radius-big;
+  @each $size in $element-sizes {
+    &-#{$size} {
+      padding: map-get($element-paddings, $size);
+      font-size: map-get($element-texts, $size);
+      border-radius: map-get($el-border-radiuses, $size);
+    }
   }
 }

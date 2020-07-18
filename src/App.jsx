@@ -5,7 +5,13 @@ import Button from "./components/button";
 
 const themes = ["primary", "positive", "warning", "negative"];
 
-const drawButtons = (size, squared = false, block = false) => {
+const drawButtons = (
+  size,
+  squared = false,
+  block = false,
+  active = false,
+  disabled = false
+) => {
   let key = 0;
   const onClick = (theme) => window.alert(`${theme} ${size} clicked`);
   return themes.map((theme) => (
@@ -16,6 +22,8 @@ const drawButtons = (size, squared = false, block = false) => {
       squared={squared}
       block={block}
       theme={theme}
+      active={active}
+      disabled={disabled}
     >
       {theme}
     </Button>
@@ -41,6 +49,14 @@ export default function App(props) {
       <div className="example">
         <h2>Normal squared buttons</h2>
         {drawButtons("normal", true)}
+      </div>
+      <div className="example">
+        <h2>Normal active buttons</h2>
+        {drawButtons("big", false, false, true)}
+      </div>
+      <div className="example">
+        <h2>Normal disabled buttons</h2>
+        {drawButtons("big", false, false, false, true)}
       </div>
       <div className="example">
         <h2>Normal block buttons</h2>
