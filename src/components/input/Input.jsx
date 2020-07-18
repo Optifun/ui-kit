@@ -29,23 +29,39 @@ class Input extends React.Component {
   }
 
   render() {
-    const { className, size, invalid, valid, innerRef, ...attrs } = this.props;
+    const {
+      className,
+      size,
+      placeHolder,
+      invalid,
+      valid,
+      innerRef,
+      ...attrs
+    } = this.props;
 
     const classes = classNames(
       className,
-      size && `form-control-${size}`,
+      "input-control",
+      size && `input-control-${size}`,
       valid && "is-valid",
       invalid && "is-invalid"
     );
 
-    return <input {...attrs} ref={innerRef} className={classes} />;
+    return (
+      <input
+        {...attrs}
+        ref={innerRef}
+        className={classes}
+        placeholder={placeHolder}
+      />
+    );
   }
 }
 
 Input.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
-  inline: PropTypes.bool,
+  placeHolder: PropTypes.string,
   type: PropTypes.oneOf(INPUT_TYPES),
   size: PropTypes.string,
   valid: PropTypes.bool,
@@ -57,4 +73,8 @@ Input.propTypes = {
   ]),
 };
 
+Input.defaultProps = {
+  size: "normal",
+  type: "text",
+};
 export default Input;

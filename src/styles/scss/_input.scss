@@ -1,0 +1,38 @@
+.input-control {
+  padding: 4px 6px;
+  display: block;
+  box-sizing: border-box;
+  position: relative;
+
+  height: auto;
+  width: 100%;
+
+  border: 1px solid gray;
+  border-radius: 4px;
+  font-size: medium;
+
+  &.is-valid {
+    border-color: map-get($themes, "negative");
+    border-width: 1.5px;
+  }
+
+  &.is-invalid {
+    border-color: map-get($themes, "positive");
+    border-width: 1.5px;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: map-get($themes, "primary");
+    box-shadow: -1.5px -1.5px 2px rgba(0, 140, 255, 0.2),
+      1px 1px 0.5px rgba(0, 0, 0, 0.06);
+  }
+
+  @each $size in $element-sizes {
+    &-#{$size} {
+      padding: map-get($input-paddings, $size);
+      font-size: map-get($input-font-sizes, $size);
+      border-radius: map-get($el-border-radiuses, $size);
+    }
+  }
+}

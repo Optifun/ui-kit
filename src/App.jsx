@@ -1,9 +1,19 @@
 import React, { useState } from "react";
 // import { Button } from "./components";
 import "@/styles/scss/index.scss";
-import { Alert, Button } from "./components";
+import { Alert, Button, Input } from "./components";
 
 const themes = ["primary", "positive", "warning", "negative"];
+
+const drawInputs = (size) => {
+  return (
+    <>
+      <Input placeHolder="Input" size={size} />
+      <Input placeHolder="Valid Input" size={size} valid />
+      <Input placeHolder="Invalid Input" size={size} invalid />
+    </>
+  );
+};
 
 const drawAlerts = (dismisible) => {
   const [state, setState] = useState([true, true, true, true]);
@@ -60,6 +70,18 @@ export default function App(props) {
       <div className="example">
         <h2>Alerts dismissible</h2>
         {drawAlerts(true)}
+      </div>
+      <div className="example">
+        <h2>Inputs small</h2>
+        {drawInputs("small")}
+      </div>
+      <div className="example">
+        <h2>Inputs normall</h2>
+        {drawInputs("normal")}
+      </div>
+      <div className="example">
+        <h2>Inputs big</h2>
+        {drawInputs("big")}
       </div>
       <div className="example">
         <h2>Small buttons</h2>

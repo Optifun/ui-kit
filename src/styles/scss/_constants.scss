@@ -19,3 +19,18 @@ $el-border-radiuses: (
   normal: 6px,
   big: 8px,
 );
+
+$input-font-sizes: (
+  small: 14px,
+  normal: 16px,
+  big: 20px,
+);
+
+$input-paddings: (
+  small: 6px,
+  normal: 8px,
+  big: 10px,
+);
+
+$input-border-width: 1px;
+$input-border-width--highlight: 1.5px;
