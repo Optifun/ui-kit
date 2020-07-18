@@ -38,4 +38,5 @@ button.close {
   font-size: map-get($element-texts, "big");
   font-weight: 500;
   line-height: 1;
+  cursor: pointer;
 }
