@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 
 const Alert = (props) => {
   const { className, theme, open, children, dismissible, ...attrs } = props;
@@ -8,15 +9,14 @@ const Alert = (props) => {
     className,
     "alert",
     `alert-${theme}`,
+    open && "alert-open",
     dismissible && "alert-dismissible"
   );
 
-  const closeClasses = classNames("close", closeClassName);
-
   return (
-    <div className={classes}>
+    <div className={classes} {...attrs}>
       {dismissible ? (
-        <button type="button" className={closeClasses} onClick={dismissible}>
+        <button type="button" className="close" onClick={dismissible}>
           <span aria-hidden="true">&times;</span>
         </button>
       ) : null}
@@ -32,7 +32,6 @@ Alert.propTypes = {
   theme: PropTypes.string,
   open: PropTypes.bool,
   dismissible: PropTypes.func,
-  transition: PropTypes.shape(Fade.propTypes),
 };
 
 Alert.defaultProps = {

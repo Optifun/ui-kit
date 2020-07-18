@@ -1,0 +1,41 @@
+.alert {
+  position: relative;
+  border: none;
+  display: none;
+  //   width: 100%;
+  padding: map-get($element-paddings, "big");
+  font-size: map-get($element-texts, "normal");
+
+  @each $theme, $color in $themes {
+    &-#{$theme} {
+      background-color: $color;
+      color: $foreground;
+    }
+  }
+
+  &-open {
+    display: block;
+  }
+
+  & .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: map-get($element-paddings, "big");
+    color: inherit;
+  }
+}
+
+button.close {
+  background: transparent;
+  border: 0;
+  &:active {
+    outline: none;
+  }
+}
+
+.close {
+  font-size: map-get($element-texts, "big");
+  font-weight: 500;
+  line-height: 1;
+}

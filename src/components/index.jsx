@@ -1,3 +1,4 @@
 import Button from "./button";
+import Alert from "./alert";
 
-export default { Button };
+export { Alert, Button };

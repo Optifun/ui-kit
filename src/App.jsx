@@ -1,9 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 // import { Button } from "./components";
 import "@/styles/scss/index.scss";
-import Button from "./components/button";
+import { Alert, Button } from "./components";
 
 const themes = ["primary", "positive", "warning", "negative"];
+
+const drawAlerts = (dismisible) => {
+  const [state, setState] = useState([true, true, true, true]);
+  let key = 0;
+  const toggleOpen = (index) => {
+    setState(state.map((st, id) => (id === index ? !st : st)));
+    console.log(state);
+  };
+
+  return themes.map((theme, index) => {
+    const dismiss = dismisible === true ? () => toggleOpen(index) : undefined;
+    return (
+      <Alert
+        key={key++}
+        open={state[index]}
+        theme={theme}
+        dismissible={dismiss}
+      >
+        This is alert <b>{theme}</b>
+      </Alert>
+    );
+  });
+};
 
 const drawButtons = (
   size,
@@ -34,6 +57,10 @@ export default function App(props) {
   return (
     <div>
       <h1>React playground</h1>
+      <div className="example">
+        <h2>Alerts dismissible</h2>
+        {drawAlerts(true)}
+      </div>
       <div className="example">
         <h2>Small buttons</h2>
         {drawButtons("small")}
