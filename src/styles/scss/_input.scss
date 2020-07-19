@@ -12,12 +12,12 @@
   font-size: medium;
 
   &.is-valid {
-    border-color: map-get($themes, "negative");
+    border-color: map-get($themes, "positive");
     border-width: 1.5px;
   }
 
   &.is-invalid {
-    border-color: map-get($themes, "positive");
+    border-color: map-get($themes, "negative");
     border-width: 1.5px;
   }
 
