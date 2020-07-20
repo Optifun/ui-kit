@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // import { Button } from "./components";
 import "@/styles/scss/index.scss";
-import { Alert, Button, Input, RangeSlider } from "./components";
+import { Alert, Button, Input, RangeSlider, Select } from "./components";
 
 const themes = ["primary", "positive", "warning", "negative"];
 
@@ -32,6 +32,27 @@ const drawSliders = (hideHint = false) => {
         />
       ))}
     </div>
+  );
+};
+
+const drawSelects = (size) => {
+  const children = (
+    <>
+      <option>🍏Apple</option>
+      <option>🍊Orange</option>
+      <option>🍉Melon</option>
+    </>
+  );
+  return (
+    <>
+      <Select size={size}>{children}</Select>
+      <Select size={size} valid>
+        {children}
+      </Select>
+      <Select size={size} invalid>
+        {children}
+      </Select>
+    </>
   );
 };
 
@@ -110,6 +131,7 @@ export default function App(props) {
   return (
     <div>
       <h1>React playground</h1>
+
       <div className="example">
         <h2>Alerts dismissible</h2>
         {drawAlerts(true)}
@@ -120,6 +142,7 @@ export default function App(props) {
         {drawSliders()}
         {drawSliders(true)}
       </div>
+
       <div className="example">
         <h2>Inputs small</h2>
         {drawInputs("small")}
@@ -132,6 +155,20 @@ export default function App(props) {
         <h2>Inputs big</h2>
         {drawInputs("big")}
       </div>
+
+      <div className="example">
+        <h2>Selects small</h2>
+        {drawSelects("small")}
+      </div>
+      <div className="example">
+        <h2>Selects normall</h2>
+        {drawSelects("normal")}
+      </div>
+      <div className="example">
+        <h2>Selects big</h2>
+        {drawSelects("big")}
+      </div>
+
       <div className="example">
         <h2>Small buttons</h2>
         {drawButtons("small")}
@@ -144,6 +181,7 @@ export default function App(props) {
         <h2>Big buttons</h2>
         {drawButtons("big")}
       </div>
+
       <div className="example">
         <h2>Normal squared buttons</h2>
         {drawButtons("normal", true)}
@@ -156,6 +194,7 @@ export default function App(props) {
         <h2>Normal disabled buttons</h2>
         {drawButtons("big", false, false, false, true)}
       </div>
+
       <div className="example">
         <h2>Normal block buttons</h2>
         {drawButtons("normal", false, true)}

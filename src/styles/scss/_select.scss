@@ -1,0 +1,7 @@
+.custom-select {
+  @each $size in $element-sizes {
+    &.input-control-#{$size} {
+      height: map-get($map: $select-heights, $key: $size);
+    }
+  }
+}

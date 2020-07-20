@@ -3,20 +3,6 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 class Select extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.getRef = this.getRef.bind(this);
-  }
-
-  getRef(ref) {
-    if (this.props.innerRef) {
-      this.props.innerRef(ref);
-    }
-
-    this.ref = ref;
-  }
-
   render() {
     const {
       className,
@@ -30,11 +16,11 @@ class Select extends React.Component {
 
     const classes = classNames(
       className,
-      "form-control",
+      "input-control",
       "custom-select",
       valid && "is-valid",
       invalid && "is-invalid",
-      size && `form-control-${size}`
+      size && `input-control-${size}`
     );
 
     return (
@@ -56,6 +42,10 @@ Select.propTypes = {
     PropTypes.func,
     PropTypes.string,
   ]),
+};
+
+Select.defaultProps = {
+  size: "normal",
 };
 
 export default Select;
