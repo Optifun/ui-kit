@@ -1,0 +1,63 @@
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+
+  height: $slider-track-height;
+  width: 100%;
+  border-radius: $slider-track-border-radius;
+  background: $slider-track-bgcolor;
+  outline: none;
+  box-shadow: $slider-track-box-shadow;
+
+  &-wrap {
+    position: relative;
+    display: block;
+  }
+
+  &-hide-hint + .slider-hint {
+    visibility: hidden;
+  }
+
+  &-hide-hint:active + .slider-hint,
+  &-hide-hint:hover + .slider-hint {
+    visibility: visible;
+  }
+
+  &-hint {
+    position: absolute;
+    padding: $slider-hint-paddings;
+
+    transform: translateX(-50%);
+    top: $slider-hint-top;
+    border-radius: $slider-hint-border-radius;
+    background: $slider-hint-bgcolor;
+    box-shadow: $slider-hint-shadow;
+    text-align: center;
+    user-select: none;
+  }
+
+  @each $theme, $color in $themes {
+    &-#{$theme} {
+      background-color: lighten($color, 24);
+    }
+  }
+
+  @mixin slider-thumb {
+    border-radius: $slider-thumb-radius;
+    width: $slider-thumb-radius * 2;
+    height: $slider-thumb-radius * 2;
+    background-color: $slider-thumb-bgcolor;
+    border: $slider-thumb-border;
+    box-shadow: $slider-thumb-shadow;
+  }
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    @include slider-thumb();
+  }
+
+  &::-moz-range-thumb {
+    @include slider-thumb();
+  }
+}

@@ -1,9 +1,39 @@
 import React, { useState } from "react";
 // import { Button } from "./components";
 import "@/styles/scss/index.scss";
-import { Alert, Button, Input } from "./components";
+import { Alert, Button, Input, RangeSlider } from "./components";
 
 const themes = ["primary", "positive", "warning", "negative"];
+
+const drawSliders = (hideHint = false) => {
+  const onChange = (value) => console.log(value);
+  const calcValue = (min, max) =>
+    Math.floor(min + Math.random() * (max - min + 1));
+  let key = 0;
+  return (
+    <div style={{ width: "500px", display: "inline-block" }}>
+      <RangeSlider
+        key={0}
+        value={calcValue(5, 25)}
+        min={5}
+        max={25}
+        hideHint={hideHint}
+        onChange={onChange}
+      />
+      {themes.map((theme) => (
+        <RangeSlider
+          key={key++}
+          value={calcValue(5, 25)}
+          theme={theme}
+          min={5}
+          max={25}
+          hideHint={hideHint}
+          onChange={onChange}
+        />
+      ))}
+    </div>
+  );
+};
 
 const drawInputs = (size) => {
   return (
@@ -20,7 +50,6 @@ const drawAlerts = (dismisible) => {
   let key = 0;
   const toggleOpen = (index) => {
     setState(state.map((st, id) => (id === index ? !st : st)));
-    console.log(state);
   };
 
   return themes.map((theme, index) => {
@@ -70,6 +99,12 @@ export default function App(props) {
       <div className="example">
         <h2>Alerts dismissible</h2>
         {drawAlerts(true)}
+      </div>
+
+      <div className="example">
+        <h2>Slider</h2>
+        {drawSliders()}
+        {drawSliders(true)}
       </div>
       <div className="example">
         <h2>Inputs small</h2>
