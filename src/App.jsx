@@ -76,20 +76,34 @@ const drawButtons = (
 ) => {
   let key = 0;
   const onClick = (theme) => window.alert(`${theme} ${size} clicked`);
-  return themes.map((theme) => (
-    <Button
-      key={key++}
-      onClick={() => onClick(theme)}
-      size={size}
-      squared={squared}
-      block={block}
-      theme={theme}
-      active={active}
-      disabled={disabled}
-    >
-      {theme}
-    </Button>
-  ));
+  return (
+    <>
+      <Button
+        onClick={() => onClick("")}
+        size={size}
+        squared={squared}
+        block={block}
+        active={active}
+        disabled={disabled}
+      >
+        Normal
+      </Button>
+      {themes.map((theme) => (
+        <Button
+          key={key++}
+          onClick={() => onClick(theme)}
+          size={size}
+          squared={squared}
+          block={block}
+          theme={theme}
+          active={active}
+          disabled={disabled}
+        >
+          {theme}
+        </Button>
+      ))}
+    </>
+  );
 };
 
 export default function App(props) {

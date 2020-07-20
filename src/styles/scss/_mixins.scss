@@ -1,0 +1,28 @@
+@mixin button-hover($bgcolor) {
+  @if lightness($bgcolor) > 50% {
+    background-color: darken($bgcolor, 3);
+  } @else {
+    background-color: lighten(saturate($bgcolor, 8), 5);
+  }
+}
+
+@mixin button-states($bgcolor) {
+  &:hover {
+    cursor: pointer;
+    @include button-hover($bgcolor);
+  }
+
+  &:focus {
+    box-shadow: none;
+  }
+
+  &.active:not(:disabled),
+  &:active {
+    background-color: lighten(saturate($bgcolor, 8), 8);
+    box-shadow: $button-active-shadow;
+  }
+
+  &:disabled {
+    background-color: lighten($bgcolor, 16);
+  }
+}

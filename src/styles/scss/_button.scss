@@ -1,17 +1,15 @@
 .btn {
   border: none;
+  background-color: $button-bgcolor;
+  box-shadow: $button-shadow;
+  user-select: none;
 
-  &:hover {
-    cursor: pointer;
-  }
-
-  &:focus {
-    box-shadow: none;
-  }
+  @include button-states($button-bgcolor);
 
   &.btn-squared {
     border-radius: 0px;
   }
+
   &.btn-block {
     display: block;
     width: 100%;
@@ -22,13 +20,7 @@
       background-color: $color;
       color: $foreground;
 
-      &.active:not(:disabled) {
-        background-color: saturate($color, 20);
-      }
-
-      &:disabled {
-        background-color: desaturate($color, 17);
-      }
+      @include button-states($color);
     }
   }
 

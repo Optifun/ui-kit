@@ -69,7 +69,6 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  theme: "primary",
   type: "accept",
   size: "normal",
 };

@@ -20,6 +20,13 @@ $el-border-radiuses: (
   big: 8px,
 );
 
+// Button
+//
+$button-bgcolor: #f2f2f2;
+$button-shadow: 1px 1px 2px #44444480;
+$button-active-shadow: inset 1.5px 2px 2px #44444480,
+  inset -1px -1.5px 2px #44444480;
+
 $input-font-sizes: (
   small: 14px,
   normal: 16px,
