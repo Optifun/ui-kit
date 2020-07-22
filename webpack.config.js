@@ -3,7 +3,7 @@ const HTMLWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
-const isDev = process.env.NODE_ENV === "development";
+const isDev = true; // process.env.NODE_ENV == "development";
 const isProd = !isDev;
 
 const filename = (extension) =>
@@ -43,7 +43,7 @@ const babelOptions = (preset) => {
 module.exports = {
   context: path.resolve(__dirname, "src"),
   mode: "development",
-  entry: ["@babel/polyfill", "./index.jsx"],
+  entry: { main: ["@babel/polyfill", "./index.jsx"], lib: ["./index.jsx"] },
   output: {
     filename: filename("js"),
     path: path.resolve(__dirname, "dist"),
@@ -56,6 +56,7 @@ module.exports = {
   },
   devServer: {
     port: 4020,
+    hot: true,
   },
   devtool: isDev ? "source-map" : "",
   plugins: [
