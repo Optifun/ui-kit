@@ -7,7 +7,7 @@ const isDev = true; // process.env.NODE_ENV == "development";
 const isProd = !isDev;
 
 const filename = (extension) =>
-  isDev ? `[name][chunkhash].${extension}` : `[chunkhash].${extension}`;
+  isDev ? `[name].${extension}` : `[chunkhash].${extension}`;
 
 const cssLoaders = (extra) => {
   const loaders = [
