@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import "../../styles/scss/index.scss";
 
 class Button extends React.Component {
   constructor(props) {
@@ -73,4 +74,4 @@ Button.defaultProps = {
   size: "normal",
 };
 
-export default Button;
+export { Button };

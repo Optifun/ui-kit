@@ -48,4 +48,4 @@ Select.defaultProps = {
   size: "normal",
 };
 
-export default Select;
+export { Select };

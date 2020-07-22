@@ -77,4 +77,4 @@ Input.defaultProps = {
   size: "normal",
   type: "text",
 };
-export default Input;
+export { Input };

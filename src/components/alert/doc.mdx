@@ -1,0 +1,55 @@
+---
+name: Alert
+menu: Components
+---
+
+import { Alert } from "./Alert.jsx";
+import { Playground, Props } from "docz";
+
+# Alert
+
+Данный компонент предназначен для вывода пользователю системных сообщений.
+
+<Playground>
+  <Alert open>This is Alert</Alert>
+</Playground>
+
+## Использование контекстных тем
+
+<Playground>
+  <Alert open theme="primary">
+    This is Alert
+  </Alert>
+  <Alert open theme="positive">
+    This is Alert
+  </Alert>
+  <Alert open theme="warning">
+    This is Alert
+  </Alert>
+  <Alert open theme="negative">
+    This is Alert
+  </Alert>
+</Playground>
+
+## Закрытие компонента
+
+<Playground>
+  {() => {
+    const [isOpen, setOpen] = React.useState(true);
+    const onClick = () => setOpen(!isOpen);
+    return (
+      <>
+      <Alert open theme="primary">
+        Can't be closed
+      </Alert>
+      <Alert open={isOpen} theme="negative" dismissible={onClick}>
+        Can be closed
+      </Alert>
+    </>
+    )
+  }}
+</Playground>
+
+## Props
+
+<Props of={Alert} />

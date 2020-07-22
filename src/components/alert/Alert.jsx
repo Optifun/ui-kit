@@ -39,4 +39,4 @@ Alert.defaultProps = {
   open: true,
 };
 
-export default Alert;
+export { Alert };
