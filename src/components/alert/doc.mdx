@@ -19,6 +19,7 @@ import { Playground, Props } from "docz";
 В свойство компонента **theme** можно передать одну из четырёх допустимых контекстуальных тем: *primary*, *positive*, *warning*, *negative*.
 
 <Playground>
+  <div className="margins">
   <Alert open theme="primary">
     This is Alert
   </Alert>
@@ -31,6 +32,7 @@ import { Playground, Props } from "docz";
   <Alert open theme="negative">
     This is Alert
   </Alert>
+  </div>
 </Playground>
 
 ## Закрытие компонента
@@ -42,14 +44,15 @@ import { Playground, Props } from "docz";
     const [isOpen, setOpen] = React.useState(true);
     const onClick = () => setOpen(!isOpen);
     return (
-      <>
+      <div className="margins">
+
       <Alert open theme="primary">
         Can't be closed
       </Alert>
       <Alert open={isOpen} theme="negative" dismissible={onClick}>
         Can be closed
       </Alert>
-    </>
+      </div>
     )
   }}
 </Playground>
