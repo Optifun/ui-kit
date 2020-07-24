@@ -11,16 +11,31 @@ class RangeSlider extends React.Component {
 
     this.inputRef = innerRef || React.createRef();
     this.hintRef = React.createRef();
+    this.wrapperRef = React.createRef();
     this.onChange = onChange;
     this.changeValue = this.changeValue.bind(this);
+    this.handleWheel = this.handleWheel.bind(this);
   }
 
   componentDidMount() {
     this.placeHint(this.state.value);
+    this.wrapperRef.current.addEventListener('wheel', this.handleWheel, { passive: false });
+  }
+  
+  componentWillUnmount() {
+    this.wrapperRef.current.removeEventListener('wheel', this.handleWheel);
+  }
+  
+  handleWheel(e) {
+    e.preventDefault();
+    if (e.deltaY < 0) {
+      return this.changeValue(1);
+    }
+    return this.changeValue(-1);
   }
 
-  changeValue() {
-    const value = this.inputRef.current.value;
+  changeValue(diff = 0) {
+    const value = Number(this.inputRef.current.value) + diff;
     this.setState({ ...this.state, value });
     this.placeHint(value);
     this.onChange(value);
@@ -50,7 +65,7 @@ class RangeSlider extends React.Component {
     );
 
     return (
-      <div className="slider-wrap">
+      <div className="slider-wrap" ref={this.wrapperRef}>
         <input
           ref={this.inputRef}
           type="range"
