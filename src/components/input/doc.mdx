@@ -8,8 +8,59 @@ import { Playground, Props } from "docz";
 
 # Input
 
-Данный компонент предназначен для вывода пользователю системных сообщений.
+Данный компонент предназначен для ввода пользовательских данных.
 
 <Playground>
-  <Input />
+  <Input placeHolder="This is Input" />
 </Playground>
+
+## Размеры
+
+В свойстве компонента **size** можно указать один из трех размеров: _small_, _normal_ и _big_.
+
+По умолчанию поле принимает нормальный размер.
+
+<Playground>
+  <div className="margins">
+    <Input placeHolder="Big Input" size="big" />
+    <Input placeHolder="Normal Input" size="normal" />
+    <Input placeHolder="Small Input" size="small" />
+  </div>
+</Playground>
+
+## Статус ввода
+
+Чтобы указать, что пользователь указал верные или, наоборот, неверные данные
+необходимо передать в компонент атрибуты **valid** или **invalid** соответственно.
+
+<Playground>
+  <div className="margins">
+    <Input placeHolder="Data" value="Valid Data" valid />
+    <Input placeHolder="Data" value="Invalid data" invalid />
+  </div>
+</Playground>
+
+## Привязка к значению
+
+В компонент можно передать значение(**value**) по-умолчанию, 
+а так же отслеживать изменение значения с помощью свойств **onBlur** и **onChange**.
+<Playground>
+  {
+    ()=>{
+      const [value1, onBlur] = React.useState("Change Value");
+      const [value2, onChange] = React.useState(value1);
+
+      return (
+        <div className="margins">
+          <div>{value1}</div>
+          <div>{value2}</div>
+          <Input placeHolder="Data" value={value1} onBlur={onBlur} onChange={onChange}/>
+        </div> 
+          )
+    }
+  }
+</Playground>
+
+## Props
+
+<Props of={Input} />
