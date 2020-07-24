@@ -26,11 +26,29 @@ const Alert = (props) => {
 };
 
 Alert.propTypes = {
+  /**
+   * Дочерние компоненты
+   */
   children: PropTypes.node,
+  /**
+   * Пользовательские классы компонента
+   */
   className: PropTypes.string,
+  /**
+   * Пользовательские классы кнопки закрытия
+   */
   closeClassName: PropTypes.string,
+  /**
+   * Контекстуальная тема
+   */
   theme: PropTypes.string,
+  /**
+   * Отображается ли компонент на экране
+   */
   open: PropTypes.bool,
+  /**
+   * Калбек вызываемый при нажатии на кнопку закрытия
+   */
   dismissible: PropTypes.func,
 };
 

@@ -14,7 +14,9 @@ import { Playground, Props } from "docz";
   <Alert open>This is Alert</Alert>
 </Playground>
 
-## Использование контекстных тем
+## Контекстуальные темы
+
+В свойство компонента **theme** можно передать одну из четырёх допустимых контекстуальных тем: *primary*, *positive*, *warning*, *negative*.
 
 <Playground>
   <Alert open theme="primary">
@@ -32,6 +34,8 @@ import { Playground, Props } from "docz";
 </Playground>
 
 ## Закрытие компонента
+
+Для того чтобы управлять закрытием компонента, необходимо передать в поле **dismissible** колбек, управляющий свойством **open** компонента.
 
 <Playground>
   {() => {
