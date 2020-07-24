@@ -1,7 +1,14 @@
+.margins {
+  & > * {
+    margin: 0px 4px 10px 4px;
+  }
+}
+
 .example {
+  @extend .margins;
+  padding: 12px;
   background-color: #eeeeee;
   border-radius: 8px;
-  padding: 12px;
   margin-bottom: 12px;
 
   & > * {
