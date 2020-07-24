@@ -1,32 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-
+import { sizes } from "../constants";
 import { INPUT_TYPES } from "../constants";
 
 class Input extends React.Component {
   constructor(props) {
     super(props);
 
-    this.ref = null;
-
-    this.getRef = this.getRef.bind(this);
-    this.focus = this.focus.bind(this);
+    const { innerRef } = props;
+    this.ref = innerRef || React.createRef();
   }
 
-  getRef(ref) {
-    if (this.props.innerRef) {
-      this.props.innerRef(ref);
-    }
+  onBlur = (e) => {
+    e.preventDefault();
+    const { onBlur } = this.props;
+    if (onBlur) onBlur(e.target.value);
+  };
 
-    this.ref = ref;
-  }
-
-  focus() {
-    if (this.ref) {
-      this.ref.focus();
-    }
-  }
+  onChange = (e) => {
+    e.preventDefault();
+    const { onChange } = this.props;
+    if (onChange) onChange(e.target.value);
+  };
 
   render() {
     const {
@@ -35,7 +31,7 @@ class Input extends React.Component {
       placeHolder,
       invalid,
       valid,
-      innerRef,
+      value,
       ...attrs
     } = this.props;
 
@@ -50,8 +46,11 @@ class Input extends React.Component {
     return (
       <input
         {...attrs}
-        ref={innerRef}
+        ref={this.ref}
         className={classes}
+        onBlur={this.onBlur}
+        onChange={this.onChange}
+        defaultValue={value}
         placeholder={placeHolder}
       />
     );
@@ -59,13 +58,45 @@ class Input extends React.Component {
 }
 
 Input.propTypes = {
+  /**
+   * Пользовательские классы компонента
+   */
   className: PropTypes.string,
-  children: PropTypes.node,
+  /**
+   * Плейсхолдер
+   */
   placeHolder: PropTypes.string,
+  /**
+   * Тип значения поля
+   */
   type: PropTypes.oneOf(INPUT_TYPES),
-  size: PropTypes.string,
+  /**
+   * Размер поля
+   */
+  size: PropTypes.oneOf(sizes),
+  /**
+   * Является ли поле корректно заполненным
+   */
   valid: PropTypes.bool,
+  /**
+   * Является ли поле ошибочно заполненным
+   */
   invalid: PropTypes.bool,
+  /**
+   * Значение по-умолчанию
+   */
+  value: PropTypes.string,
+  /**
+   * Колбек получающий значение поля при потере фокуса
+   */
+  onBlur: PropTypes.func,
+  /**
+   * Колбек получающий значение поля при изменении значения
+   */
+  onChange: PropTypes.func,
+  /**
+   * Ссылка передаваемая в HTML элемент
+   */
   innerRef: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.func,
@@ -77,4 +108,5 @@ Input.defaultProps = {
   size: "normal",
   type: "text",
 };
-export default Input;
+
+export { Input };
