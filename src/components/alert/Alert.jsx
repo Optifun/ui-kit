@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import { themes } from "../constants";
 
 const Alert = (props) => {
   const { className, theme, open, children, dismissible, ...attrs } = props;
@@ -41,7 +42,7 @@ Alert.propTypes = {
   /**
    * Контекстуальная тема
    */
-  theme: PropTypes.string,
+  theme: PropTypes.oneOf(themes),
   /**
    * Отображается ли компонент на экране
    */
