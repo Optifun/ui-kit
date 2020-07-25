@@ -7,44 +7,55 @@ class RangeSlider extends React.Component {
     super(props);
 
     const { value, onChange, innerRef, min, max } = props;
-    this.state = { value, min, max };
+    this.state = { value };
 
     this.inputRef = innerRef || React.createRef();
     this.hintRef = React.createRef();
     this.wrapperRef = React.createRef();
-    this.onChange = onChange;
-    this.changeValue = this.changeValue.bind(this);
-    this.handleWheel = this.handleWheel.bind(this);
   }
 
   componentDidMount() {
     this.placeHint(this.state.value);
-    this.wrapperRef.current.addEventListener('wheel', this.handleWheel, { passive: false });
+    this.wrapperRef.current.addEventListener("wheel", this.handleWheel, {
+      passive: false,
+    });
   }
-  
+
   componentWillUnmount() {
-    this.wrapperRef.current.removeEventListener('wheel', this.handleWheel);
+    this.wrapperRef.current.removeEventListener("wheel", this.handleWheel);
   }
-  
-  handleWheel(e) {
+
+  handleWheel = (e) => {
     e.preventDefault();
     if (e.deltaY < 0) {
       return this.changeValue(1);
     }
     return this.changeValue(-1);
-  }
+  };
 
-  changeValue(diff = 0) {
+  changeValue = (diff = 0) => {
     const value = Number(this.inputRef.current.value) + diff;
+    this.setValue(value);
+  };
+
+  setValue = (value) => {
+    const { min, max, onChange } = this.props;
+    if (value < min || max < value) return;
+
     this.setState({ ...this.state, value });
     this.placeHint(value);
-    this.onChange(value);
-  }
+    if (onChange) onChange(value);
+  };
+
+  onChange = (e) => {
+    e.stopPropagation();
+    this.setValue(e.target.value);
+  };
 
   placeHint(value) {
     const pixelOffset = 10;
     const thumbRadius = 6;
-    const { min, max } = this.state;
+    const { min, max } = this.props;
     const percents = ((value - min) / (max - min)) * 100;
     this.hintRef.current.style.left = `calc(${percents}% + ${pixelOffset -
       (percents / 100) * (pixelOffset + thumbRadius)}px)`;
@@ -73,7 +84,7 @@ class RangeSlider extends React.Component {
           min={min}
           max={max}
           value={this.state.value}
-          onChange={this.changeValue}
+          onChange={this.onChange}
         />
         <label ref={this.hintRef} className={hitClasses}>
           {this.state.value}
@@ -84,21 +95,37 @@ class RangeSlider extends React.Component {
 }
 
 RangeSlider.propTypes = {
-  /** Custom class names for component */
+  /**
+   *  Пользовательские классы компонента
+   */
   className: PropTypes.string,
-  /** Contextual theme */
+  /**
+   * Контекстуальная тема
+   * */
   theme: PropTypes.string,
-  /** Minimal range value */
+  /**
+   * Минимальное значение ползунка
+   */
   min: PropTypes.number,
-  /** Maximal range value */
+  /**
+   *  Максимальное значение ползунка
+   */
   max: PropTypes.number,
-  /** Starting range value */
+  /**
+   *  Начальное значение ползунка
+   */
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  /** Should hint hide */
+  /**
+   * Должна ли подсказка скрываться
+   */
   hideHint: PropTypes.bool,
-  /** Callback for onChange event */
+  /**
+   *  Колбек получающий значение ползунка при изменении значения
+   */
   onChange: PropTypes.func.isRequired,
-  /** Inner ref which will be passed to control */
+  /**
+   * Ссылка передаваемая в HTML элемент
+   */
   innerRef: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.func,
