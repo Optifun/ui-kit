@@ -5,18 +5,15 @@ menu: Components
 
 import { Select } from "./Select.jsx";
 import { Playground, Props } from "docz";
-const children = (
-  <>
-    <option>🍏Apple</option>
-    <option>🍊Orange</option>
-    <option>🍉Melon</option>
-  </>
-);
 
 # Select
 
 <Playground>
-  <Select>{children}</Select>
+  <Select>
+    <option>🍏Apple</option>
+    <option>🍊Orange</option>
+    <option>🍉Melon</option>
+  </Select>
 </Playground>
 
 ## Статус ввода
@@ -26,8 +23,16 @@ const children = (
 
 <Playground>
   <div className="margins">
-    <Select valid>{children}</Select>
-    <Select invalid>{children}</Select>
+    <Select valid>
+      <option>🍏Apple</option>
+      <option>🍊Orange</option>
+      <option>🍉Melon</option>
+    </Select>
+    <Select invalid>
+      <option>🍏Apple</option>
+      <option>🍊Orange</option>
+      <option>🍉Melon</option>
+    </Select>
   </div>
 </Playground>
 
@@ -39,14 +44,20 @@ const children = (
 
 <Playground>
   <div className="margins">
-    <Select theme="primary" size="big">
-      {children}
+    <Select theme="primary" size="small">
+      <option>🍏Apple</option>
+      <option>🍊Orange</option>
+      <option>🍉Melon</option>
     </Select>
     <Select theme="primary" size="normal">
-      {children}
+      <option>🍏Apple</option>
+      <option>🍊Orange</option>
+      <option>🍉Melon</option>
     </Select>
-    <Select theme="primary" size="small">
-      {children}
+    <Select theme="primary" size="big">
+      <option>🍏Apple</option>
+      <option>🍊Orange</option>
+      <option>🍉Melon</option>
     </Select>
   </div>
 </Playground>

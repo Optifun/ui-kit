@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import { sizes } from "../constants";
 
 class Select extends React.Component {
   render() {
@@ -32,11 +33,29 @@ class Select extends React.Component {
 }
 
 Select.propTypes = {
+  /**
+   * Пользовательские классы компонента
+   */
   className: PropTypes.string,
+  /**
+   * Дочерние элементы
+   */
   children: PropTypes.node,
-  size: PropTypes.string,
+  /**
+   * Размер компонента
+   */
+  size: PropTypes.oneOf(sizes),
+  /**
+   * Является ли поле корректно заполненным
+   */
   valid: PropTypes.bool,
+  /**
+   * Является ли поле ошибочно заполненным
+   */
   invalid: PropTypes.bool,
+  /**
+   * Ссылка передаваемая в HTML элемент
+   */
   innerRef: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.func,
