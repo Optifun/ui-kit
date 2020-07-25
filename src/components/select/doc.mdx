@@ -5,11 +5,52 @@ menu: Components
 
 import { Select } from "./Select.jsx";
 import { Playground, Props } from "docz";
+const children = (
+  <>
+    <option>🍏Apple</option>
+    <option>🍊Orange</option>
+    <option>🍉Melon</option>
+  </>
+);
 
 # Select
 
-Данный компонент предназначен для вывода пользователю системных сообщений.
+<Playground>
+  <Select>{children}</Select>
+</Playground>
+
+## Статус ввода
+
+Чтобы указать, что пользователь указал верные или, наоборот, неверные данные
+необходимо передать в компонент атрибуты **valid** или **invalid** соответственно.
 
 <Playground>
-  <Select>This is Alert</Select>
+  <div className="margins">
+    <Select valid>{children}</Select>
+    <Select invalid>{children}</Select>
+  </div>
 </Playground>
+
+## Размеры
+
+В свойстве компонента **size** можно указать один из трех размеров: _small_, _normal_ и _big_.
+
+По умолчанию кнопка принимает нормальный размер.
+
+<Playground>
+  <div className="margins">
+    <Select theme="primary" size="big">
+      {children}
+    </Select>
+    <Select theme="primary" size="normal">
+      {children}
+    </Select>
+    <Select theme="primary" size="small">
+      {children}
+    </Select>
+  </div>
+</Playground>
+
+# Props
+
+<Props of={Select} />
