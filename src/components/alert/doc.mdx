@@ -1,0 +1,62 @@
+---
+name: Alert
+menu: Components
+---
+
+import { Alert } from "./Alert.jsx";
+import { Playground, Props } from "docz";
+
+# Alert
+
+Данный компонент предназначен для вывода пользователю системных сообщений.
+
+<Playground>
+  <Alert open>This is Alert</Alert>
+</Playground>
+
+## Контекстуальные темы
+
+В свойство компонента **theme** можно передать одну из четырёх допустимых контекстуальных тем: *primary*, *positive*, *warning*, *negative*.
+
+<Playground>
+  <div className="margins">
+  <Alert open theme="primary">
+    This is Alert
+  </Alert>
+  <Alert open theme="positive">
+    This is Alert
+  </Alert>
+  <Alert open theme="warning">
+    This is Alert
+  </Alert>
+  <Alert open theme="negative">
+    This is Alert
+  </Alert>
+  </div>
+</Playground>
+
+## Закрытие компонента
+
+Для того чтобы управлять закрытием компонента, необходимо передать в поле **dismissible** колбек, управляющий свойством **open** компонента.
+
+<Playground>
+  {() => {
+    const [isOpen, setOpen] = React.useState(true);
+    const onClick = () => setOpen(!isOpen);
+    return (
+      <div className="margins">
+
+      <Alert open theme="primary">
+        Can't be closed
+      </Alert>
+      <Alert open={isOpen} theme="negative" dismissible={onClick}>
+        Can be closed
+      </Alert>
+      </div>
+    )
+  }}
+</Playground>
+
+## Props
+
+<Props of={Alert} />

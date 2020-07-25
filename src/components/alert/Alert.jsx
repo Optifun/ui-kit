@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import { themes } from "../constants";
 
 const Alert = (props) => {
   const { className, theme, open, children, dismissible, ...attrs } = props;
@@ -26,11 +27,29 @@ const Alert = (props) => {
 };
 
 Alert.propTypes = {
+  /**
+   * Дочерние компоненты
+   */
   children: PropTypes.node,
+  /**
+   * Пользовательские классы компонента
+   */
   className: PropTypes.string,
+  /**
+   * Пользовательские классы кнопки закрытия
+   */
   closeClassName: PropTypes.string,
-  theme: PropTypes.string,
+  /**
+   * Контекстуальная тема
+   */
+  theme: PropTypes.oneOf(themes),
+  /**
+   * Отображается ли компонент на экране
+   */
   open: PropTypes.bool,
+  /**
+   * Калбек вызываемый при нажатии на кнопку закрытия
+   */
   dismissible: PropTypes.func,
 };
 
@@ -39,4 +58,4 @@ Alert.defaultProps = {
   open: true,
 };
 
-export default Alert;
+export { Alert };

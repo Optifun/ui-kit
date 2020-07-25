@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import { themes, sizes } from "../constants";
 
 class Button extends React.Component {
   constructor(props) {
@@ -57,14 +58,41 @@ class Button extends React.Component {
 }
 
 Button.propTypes = {
+  /**
+   * Пользовательские классы компонента
+   */
   className: PropTypes.string,
+  /**
+   * Дочерние компоненты
+   */
   children: PropTypes.node,
-  theme: PropTypes.string,
-  size: PropTypes.string,
+  /**
+   * Контекстуальная тема
+   */
+  theme: PropTypes.oneOf(themes),
+  /**
+   * Размер кнопки
+   */
+  size: PropTypes.oneOf(sizes),
+  /**
+   * Будет ли кнопка прямоугольной
+   */
   squared: PropTypes.bool,
+  /**
+   * Несёт ли кнопка активное состояние
+   */
   active: PropTypes.bool,
+  /**
+   * Имеет ли кнопка блочное поведение
+   */
   block: PropTypes.bool,
+  /**
+   * Является ли кнопка выключенной
+   */
   disabled: PropTypes.bool,
+  /**
+   * Калбек на нажатие кнопки
+   */
   onClick: PropTypes.func.isRequired,
 };
 
@@ -73,4 +101,4 @@ Button.defaultProps = {
   size: "normal",
 };
 
-export default Button;
+export { Button };

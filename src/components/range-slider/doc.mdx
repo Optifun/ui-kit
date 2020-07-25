@@ -1,0 +1,54 @@
+---
+name: RangeSlider
+menu: Components
+---
+
+import { RangeSlider } from "./RangeSlider.jsx";
+import { Playground, Props } from "docz";
+
+# RangeSlider
+
+<Playground>
+  <RangeSlider onChange={value=>console.log(value)}/>
+</Playground>
+
+## Контекстуальные стили
+
+В свойство компонента **theme** можно передать одну из четырёх допустимых контекстуальных тем: *primary*, *positive*, *warning*, *negative*.
+
+<Playground>
+  {
+  ()=>{
+    const onChange=value=>console.log(value);
+    return (
+  <div className="margins" style={{width: "500px"}}>
+    <RangeSlider theme="primary"  onChange={onChange} min={0} max={25} value={0}/>    
+    <RangeSlider theme="positive" onChange={onChange} min={50} max={100} value={75}/>
+    <RangeSlider theme="warning"  onChange={onChange} min={25} max={80} value={43}/>    
+    <RangeSlider theme="negative" onChange={onChange} min={50} max={150} value={90}/>
+  </div>)
+  }}
+</Playground>
+
+
+## Привязка к значению
+
+В компонент можно передать значение(**value**) по-умолчанию, 
+а так же отслеживать изменение значения с помощью свойства **onChange**.
+<Playground>
+  {
+    ()=>{
+      const [value, onChange] = React.useState(50);
+      return (
+        <div className="margins">
+          <div>{value}</div>
+          <RangeSlider value={value} theme="positive" onChange={onChange}/>
+        </div> 
+          )
+    }
+  }
+</Playground>
+
+# Props
+
+<Props of={RangeSlider}/>

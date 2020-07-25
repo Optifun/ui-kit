@@ -14,6 +14,10 @@ export const KEYCODES = {
   DOWN: 40,
 };
 
+export const themes = ["primary", "positive", "warning", "negative"];
+
+export const sizes = ["small", "normal", "big"];
+
 export const INPUT_TYPES = [
   "text",
   "password",

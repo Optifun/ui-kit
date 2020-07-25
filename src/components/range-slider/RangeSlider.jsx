@@ -46,9 +46,8 @@ class RangeSlider extends React.Component {
     const thumbRadius = 6;
     const { min, max } = this.state;
     const percents = ((value - min) / (max - min)) * 100;
-    this.hintRef.current.style.left = `calc(${percents}% + ${
-      pixelOffset - (percents / 100) * (pixelOffset + thumbRadius)
-    }px)`;
+    this.hintRef.current.style.left = `calc(${percents}% + ${pixelOffset -
+      (percents / 100) * (pixelOffset + thumbRadius)}px)`;
   }
 
   render() {
@@ -114,4 +113,4 @@ RangeSlider.defaultProps = {
   value: 50,
 };
 
-export default RangeSlider;
+export { RangeSlider };

@@ -1,0 +1,99 @@
+---
+name: Button
+menu: Components
+---
+
+import { Button } from "./Button.jsx";
+import { Playground, Props } from "docz";
+
+# Button
+
+<Playground>
+  {
+    () => {
+      const onClick = ()=>window.alert("Button clicked");
+      return (<Button onClick={onClick}>Click me</Button>)
+    }
+  }
+</Playground>
+
+## Контекстуальные стили
+
+В свойство компонента **theme** можно передать одну из четырёх допустимых контекстуальных тем: *primary*, *positive*, *warning*, *negative*.
+
+<Playground>
+  <div className="margins">
+    <Button theme="primary">💙Primary button</Button>
+    <Button theme="positive">💚Positive button</Button>
+    <Button theme="warning">💛Warning button</Button>
+    <Button theme="negative">💔Negative button</Button>
+  </div>
+</Playground>
+
+## Размеры
+
+В свойстве компонента **size** можно указать один из трех размеров: *small*, *normal* и *big*.
+
+По умолчанию кнопка принимает нормальный размер.
+
+<Playground>
+  <div className="margins">
+    <Button theme="primary" size="big">
+      Big button
+    </Button>
+    <Button theme="primary" size="normal">
+      Normal button
+    </Button>
+    <Button theme="primary" size="small">
+      Small button
+    </Button>
+  </div>
+</Playground>
+
+## Активные и выключенные кнопки
+
+Кнопку можно привести в активное(нажатое) состояние, указав атбирут *active*.
+
+Или можно выключить кнопку, указав атрибут *disabled*.
+
+<Playground>
+  <div className="margins">
+    <Button theme="primary" active>
+      Active button
+    </Button>
+    <Button theme="negative" active>
+      Active button
+    </Button>
+  </div>
+
+  <div className="margins">
+    <Button theme="primary" disabled>
+      Disabled button
+    </Button>
+    <Button theme="negative" disabled>
+      Disabled button
+    </Button>
+  </div>
+</Playground>
+
+## Прямоугольное и блочное поведение
+
+Кнопке можно задать прямоугольную форму, указав атрибут *squared*.
+
+Так же можно задать кнопке блочное поведение, чтобы она занимала всё горизонтальное пространство родителя. 
+Для этого необходимо передать атрибут *squared*.
+
+<Playground>
+  <div className="margins">
+    <Button theme="positive" block squared>
+      Squared block button
+    </Button>
+    <Button theme="negative" block squared>
+      Squared block button
+    </Button>
+  </div>
+</Playground>
+
+## Props
+
+<Props of={Button} />
