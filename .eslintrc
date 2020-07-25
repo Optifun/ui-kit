@@ -6,6 +6,7 @@
     "ecmaFeatures": {
       "jsx": true,
       "experimentalObjectRestSpread": true,
+      "objectLiteralShorthandProperties": true,
       "spread": true
     }
   },
